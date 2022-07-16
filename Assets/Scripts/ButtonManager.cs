@@ -9,6 +9,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject CasinoMenu;
     public GameObject BusinessMenu;
     public GameObject InputBox;
+    public GameObject ShopMenu;
     public TextMeshProUGUI BusinessNameTextbox;
 
     public GameObject WorkAtJobButton;
@@ -28,6 +29,14 @@ public class ButtonManager : MonoBehaviour
     {
         MainMenu.SetActive(false);
         WorkMenu.SetActive(true);
+    }
+
+    public void HomeButton()
+    {
+        MainMenu.SetActive(true);
+        BusinessMenu.SetActive(false);
+        CasinoMenu.SetActive(false);
+        ShopMenu.SetActive(false);
     }
 
     public void WorkAtJob()

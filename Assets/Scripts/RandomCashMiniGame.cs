@@ -1,9 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class RandomCashMiniGame : MonoBehaviour
 {
-    float timerTime = 0f;
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI finishedText;
+    private CashClick cc;
+    public GameObject MainMenu;
+    public GameObject MiniGame;
+    float timerTime = 20f;
 
+    
     float time = 0f;
     float timeDelay = 1f;
     public float PosX = 0f;
@@ -18,16 +26,34 @@ public class RandomCashMiniGame : MonoBehaviour
 
     public void Update()
     {
-        timerTime = timerTime + 1f * Time.deltaTime;
+        timerTime = timerTime - 1f * Time.deltaTime;
         time = time + 1f * Time.deltaTime;
 
         if (time >= timeDelay)
         {
             time = 0f;
-            OnClickGUI();
+            SpawnMoney();
         }
+
+            timerText.text = timerTime.ToString();
+        
+
+        if (timerTime <= 15f)
+        {
+            Debug.Log(cc.MinigameScore);
+            finishedText.text = "Score - ";// + cc.MinigameScore.ToString();
+            Invoke("finished", 2);
+        }
+
     }
-    public void OnClickGUI()
+
+    public void finished()
+    {
+        MainMenu.SetActive(true);
+        MiniGame.SetActive(false);
+    }
+
+    public void SpawnMoney()
     {
         var position = new Vector2(Random.Range(PosX, PosNegX), Random.Range(PosY, PosNegY));
         Instantiate(prefab, position, Quaternion.identity);

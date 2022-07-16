@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CashClick : MonoBehaviour
 {
-
+    public int MinigameScore = 0;
 
     void Update()
     {
@@ -13,9 +13,11 @@ public class CashClick : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log("AAAAA");
                 if (hit.transform.tag == "Minigame_Cash")
                 {
                     Debug.Log("Bruh");
+                    MinigameScore += 5;
                 }
             }
         }
