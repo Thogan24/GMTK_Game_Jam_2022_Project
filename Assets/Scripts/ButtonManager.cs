@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -8,13 +8,17 @@ public class ButtonManager : MonoBehaviour
     public GameObject WorkMenu;
     public GameObject CasinoMenu;
     public GameObject BusinessMenu;
+    public GameObject InputBox;
+    public TextMeshProUGUI BusinessNameTextbox;
 
-    void Start()
-    {
-        
-    }
+    public GameObject WorkAtJobButton;
+    public GameObject StartBusinessButton;
+    public GameObject CurrentBusinessButton1;
+    public GameObject CurrentBusinessButton2;
+    public bool CurrentBusinessButton1Active = false;
 
-    
+    public string businessName;
+
     void Update()
     {
         
@@ -26,13 +30,27 @@ public class ButtonManager : MonoBehaviour
         WorkMenu.SetActive(true);
     }
 
-    public void WorkAtJobButton()
+    public void WorkAtJob()
     {
-
+        
     }
     public void StartBusiness()
     {
-
+        
+        
+        if (CurrentBusinessButton1Active == true)
+        {
+            CurrentBusinessButton2.SetActive(false);
+            StartBusinessButton.SetActive(false);
+        }
+        else
+        {
+            CurrentBusinessButton1.SetActive(true);
+            CurrentBusinessButton1Active = true;
+        }
+        WorkMenu.SetActive(false);
+        BusinessMenu.SetActive(true);
+        
     }
     public void CurrentBusiness()
     {
@@ -44,5 +62,14 @@ public class ButtonManager : MonoBehaviour
     {
         MainMenu.SetActive(false);
         CasinoMenu.SetActive(true);
+    }
+
+    public void playerInput(string s)
+    {
+        businessName = s;
+        InputBox.SetActive(false);
+        BusinessNameTextbox.text = businessName;
+
+
     }
 }
