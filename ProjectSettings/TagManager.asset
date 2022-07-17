@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Minigame_Cash
+  - Arrow_Instructions
   layers:
   - Default
   - TransparentFX
