@@ -34,6 +34,14 @@ public class ButtonManager : MonoBehaviour
         gm = GameManager.GetComponent<GameManager>();
     }
 
+    private void Update()
+    {
+        if (MainMenu.activeSelf)
+        {
+            WorkMenu.SetActive(false);
+        }
+    }
+
     public void WorkButton()
     {       
         MainMenu.SetActive(false);

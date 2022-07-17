@@ -1105,6 +1105,7 @@ MonoBehaviour:
   AmountOfWork: 0
   CannotWork: 0
   Overworked: 0
+  OverworkedPNG: {fileID: 1688200649}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

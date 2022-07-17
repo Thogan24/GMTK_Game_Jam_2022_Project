@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int AmountOfWork = 0;
     public bool CannotWork = false;
     public bool Overworked = false;
+    public GameObject OverworkedPNG;
 
     void Start()
     {
@@ -35,6 +36,10 @@ public class GameManager : MonoBehaviour
         {
             CannotWork = true;
         }
+
+        
+        OverworkedPNG.SetActive(Overworked);
+        
     }
 
     

@@ -45,17 +45,25 @@ public class RandomCashMiniGame : MonoBehaviour
         }
         else
         {
-            timerTime = 0;
+            timerText.text = "0";
             finishedText.text = "Score - " + cc.MinigameScore.ToString();
             Invoke("finished", 2);
+
+            
+
+
         }
 
     }
 
     public void finished()
     {
+        timerTime = 20;
+        finishedText.text = "";
         MainMenu.SetActive(true);
         MiniGame.SetActive(false);
+
+        
     }
 
     public void SpawnMoney()
