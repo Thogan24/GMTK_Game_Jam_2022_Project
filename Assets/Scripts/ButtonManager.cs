@@ -24,9 +24,11 @@ public class ButtonManager : MonoBehaviour
     public TextMeshProUGUI WorkersTextbox;
     public TextMeshProUGUI BetterCashTextbox;
     public TextMeshProUGUI BetterWorkersTextbox;
+    public Animation animation;
 
-
-
+    public bool arrowIsShowing = false;
+    private DiceRolling dr;
+    public GameObject DicePanel;
     public GameObject WorkAtJobButton;
     public GameObject StartBusinessButton;
     public GameObject CurrentBusinessButton1;
@@ -45,8 +47,11 @@ public class ButtonManager : MonoBehaviour
 
     void Start()
     {
+
         betInput.characterValidation = TMP_InputField.CharacterValidation.Integer;
+        betInput.characterLimit = 16;
         gm = GameManager.GetComponent<GameManager>();
+        dr = DicePanel.GetComponent<DiceRolling>();
     }
 
     private void Update()
@@ -78,6 +83,7 @@ public class ButtonManager : MonoBehaviour
         BusinessMenu.SetActive(false);
         CasinoMenu.SetActive(false);
         ShopMenu.SetActive(false);
+        DiceGameMenu.SetActive(false);
 
     }
 
@@ -134,6 +140,11 @@ public class ButtonManager : MonoBehaviour
     {
         MainMenu.SetActive(false);
         CasinoMenu.SetActive(true);
+        betInput.gameObject.SetActive(true);
+        diceInput.gameObject.SetActive(true);
+        BetButton.SetActive(true);
+        dr.isRolling = false;
+
     }
 
     public void DiceGameButton()
@@ -162,11 +173,11 @@ public class ButtonManager : MonoBehaviour
     {
         bet = Int32.Parse(betInput.text);
         diceSide = diceInput.value;
-
+        dr.isRolling = true;
         betInput.gameObject.SetActive(false);
         diceInput.gameObject.SetActive(false);
         BetButton.SetActive(false);
-
+        
     }
 
     public void NextDayButton()
@@ -231,25 +242,28 @@ public class ButtonManager : MonoBehaviour
 
     public void InstructionsArrow()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (arrowIsShowing)
         {
+            animation.Play("ArrowOut1");
+            arrowIsShowing = false;
+        }
+        else
+        {
+            animation.Play("ArrowIn1");
+            arrowIsShowing = true;
+        }
+        
+    }
 
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                Debug.Log(hit.transform.name);
-                if (hit.transform.tag == "Arrow_Instructions")
-                {
-
-                    
-
-                }
-            }
+    public void ClampMoneyValue()
+    {
+        int InputtedMoney = Int32.Parse(betInput.text);
+        if (InputtedMoney > gm.playerMoney)
+        {
+            betInput.text = gm.playerMoney.ToString();
         }
     }
 
-
+    
 
 }
