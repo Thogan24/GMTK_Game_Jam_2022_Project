@@ -132,7 +132,7 @@ public class ButtonManager : MonoBehaviour
     {
         businessName = s;
         InputBox.SetActive(false);
-        BusinessNameTextbox.text = businessName;
+        BusinessNameTextbox.text = s;
     }
 
     public void NextDayButton()
