@@ -26,6 +26,7 @@ public class ButtonManager : MonoBehaviour
     public bool CurrentBusinessButton1Active = false;
 
     public string businessName;
+    public int overworkedRandom;
     
 
     void Start()
@@ -61,6 +62,14 @@ public class ButtonManager : MonoBehaviour
         {
             MiniGameMenu.SetActive(true);
             WorkMenu.SetActive(false);
+            if (gm.Overworked == true)
+            {
+                overworkedRandom = Random.Range(1, 5);
+                if (overworkedRandom == 1)
+                {
+                    gm.status -= 1;
+                }
+            }
         }
         else
         {
