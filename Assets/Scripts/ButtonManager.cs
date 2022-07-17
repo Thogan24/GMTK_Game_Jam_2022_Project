@@ -11,6 +11,8 @@ public class ButtonManager : MonoBehaviour
     public GameObject InputBox;
     public GameObject ShopMenu;
     public GameObject MiniGameMenu;
+    public GameObject DiceGameMenu;
+    public GameObject SlotMachineMenu;
     public TextMeshProUGUI BusinessNameTextbox;
 
     public GameObject WorkAtJobButton;
@@ -74,6 +76,18 @@ public class ButtonManager : MonoBehaviour
     {
         MainMenu.SetActive(false);
         CasinoMenu.SetActive(true);
+    }
+
+    public void DiceGameButton()
+    {
+        DiceGameMenu.SetActive(true);
+        CasinoMenu.SetActive(false);
+    }
+
+    public void SlotMachineButton()
+    {
+        SlotMachineMenu.SetActive(true);
+        CasinoMenu.SetActive(false);
     }
 
     public void playerInput(string s)
