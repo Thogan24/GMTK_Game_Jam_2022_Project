@@ -5,10 +5,13 @@ public class CashClick : MonoBehaviour
     public int MinigameScore = 0;
     public RandomCashMiniGame mg;
     public GameObject Panel;
+    public GameObject GameManager;
+    private GameManager gm;
 
     private void Start()
     {
         mg = Panel.GetComponent<RandomCashMiniGame>();
+        gm = GameManager.GetComponent<GameManager>();
     }
     void Update()
     {
@@ -24,7 +27,7 @@ public class CashClick : MonoBehaviour
                 if (hit.transform.tag == "Minigame_Cash")
                 {
                     
-                    MinigameScore += 5;
+                    MinigameScore += 5 + gm.playerMoney;
                     
                 }
             }

@@ -50,9 +50,9 @@ public class ButtonManager : MonoBehaviour
     }
 
     public void WorkButton()
-    {       
+    {
         MainMenu.SetActive(false);
-        WorkMenu.SetActive(true); 
+        WorkMenu.SetActive(true);
     }
     public void ShopButton()
     {
@@ -68,7 +68,7 @@ public class ButtonManager : MonoBehaviour
         BusinessMenu.SetActive(false);
         CasinoMenu.SetActive(false);
         ShopMenu.SetActive(false);
-        
+
     }
 
     public void WorkAtJob()
@@ -77,6 +77,7 @@ public class ButtonManager : MonoBehaviour
         {
             MiniGameMenu.SetActive(true);
             WorkMenu.SetActive(false);
+            gm.AmountOfWork += 1;
             if (gm.Overworked == true)
             {
                 overworkedRandom = Random.Range(1, 5);
@@ -148,13 +149,14 @@ public class ButtonManager : MonoBehaviour
 
     public void inputBet(int s)
     {
-        
+
     }
 
     public void NextDayButton()
     {
         gm.days += 1;
         gm.Overworked = false;
+        gm.CannotWork = false;
     }
 
     public void HireEmployee()
@@ -177,6 +179,39 @@ public class ButtonManager : MonoBehaviour
         CosmeticsMenu.SetActive(false);
         UpgradesMenu.SetActive(false);
     }
+
+    public void UpgradesButton()
+    {
+        ShopMenu.SetActive(false);
+        UpgradesMenu.SetActive(true);
+    }
+    public void CosmeticsButton()
+    {
+        ShopMenu.SetActive(false);
+        CosmeticsMenu.SetActive(true);
+    }
+    public void BetterWorkersButton()
+    {
+        if (gm.playerMoney >= 200)
+        { 
+            gm.playerMoney -= 200;
+            gm.BetterWorkersUpgrade += 1;
+            BetterWorkersTextbox.text = "200$ - Better Workers (Business) (" + gm.BetterWorkersUpgrade.ToString() + ")";
+            
+        }
+    }
+
+    public void BetterCashButton()
+    {
+        if (gm.playerMoney >= 200)
+        {
+            gm.playerMoney -= 200;
+            gm.BetterCashUpgrade += 1;
+            BetterCashTextbox.text = "200$ - Better Cash (Work) (" + gm.BetterCashUpgrade.ToString() + ")";
+            
+        }
+    }
+
 
 
 }

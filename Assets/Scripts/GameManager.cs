@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public string statusString = "";
     public int AmountOfWork = 0;
     public int AmountOfWorkers = 0;
+    public int BetterWorkersUpgrade = 0;
+    public int BetterCashUpgrade = 0;
     public bool CannotWork = false;
     public bool Overworked = false;
     public GameObject OverworkedPNG;
@@ -34,7 +36,10 @@ public class GameManager : MonoBehaviour
         dayText.text = "Day: " + days.ToString();
         
         statusText.text = "Status: " + getStatusString(); ;
-
+        if (AmountOfWork >= 3)
+        {
+            Overworked = true;
+        }
         if (AmountOfWork >= 6)
         {
             CannotWork = true;
@@ -48,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (time >= timeDelay)
         {
             time = 0f;
-            playerMoney += 10 * AmountOfWorkers;
+            playerMoney += (10 + BetterWorkersUpgrade) * AmountOfWorkers;
         }
 
     }
