@@ -23,25 +23,30 @@ public class RandomCashMiniGame : MonoBehaviour
 
     // Click the "Instantiate!" button and a new prefab will be instantiated
     // somewhere within -10.0 and 10.0 (inclusive) on the x-z plane
-
+    public void Start()
+    {
+        cc = MiniGame.GetComponent<CashClick>();
+    }
     public void Update()
     {
-        timerTime = timerTime - 1f * Time.deltaTime;
-        time = time + 1f * Time.deltaTime;
-
-        if (time >= timeDelay)
+        if (timerTime > 0f)
         {
-            time = 0f;
-            SpawnMoney();
-        }
+            timerTime = timerTime - 1f * Time.deltaTime;
+            time = time + 1f * Time.deltaTime;
+
+            if (time >= timeDelay)
+            {
+                time = 0f;
+                SpawnMoney();
+            }
 
             timerText.text = timerTime.ToString();
-        
 
-        if (timerTime <= 15f)
+        }
+        else
         {
-            Debug.Log(cc.MinigameScore);
-            finishedText.text = "Score - ";// + cc.MinigameScore.ToString();
+            timerTime = 0;
+            finishedText.text = "Score - " + cc.MinigameScore.ToString();
             Invoke("finished", 2);
         }
 
