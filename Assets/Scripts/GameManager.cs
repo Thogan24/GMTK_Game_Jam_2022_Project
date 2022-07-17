@@ -9,12 +9,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI statusText;
 
+    float time = 0f;
+    float timeDelay = 10f;
 
     public int playerMoney = 0;
     public int days = 0;
     public int status = 0;
     public string statusString = "";
     public int AmountOfWork = 0;
+    public int AmountOfWorkers = 0;
     public bool CannotWork = false;
     public bool Overworked = false;
     public GameObject OverworkedPNG;
@@ -40,8 +43,14 @@ public class GameManager : MonoBehaviour
         
         OverworkedPNG.SetActive(Overworked);
 
+        time = time + 1f * Time.deltaTime;
 
-        
+        if (time >= timeDelay)
+        {
+            time = 0f;
+            playerMoney += 10 * AmountOfWorkers;
+        }
+
     }
 
     

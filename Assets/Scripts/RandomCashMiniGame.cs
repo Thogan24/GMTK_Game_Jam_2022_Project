@@ -77,6 +77,8 @@ public class RandomCashMiniGame : MonoBehaviour
         var position = new Vector2(Random.Range(PosX, PosNegX), Random.Range(PosY, PosNegY));
         GameObject clone = Instantiate(prefab, position, Quaternion.identity);
 
+        Destroy(clone, 1);
+
         
     }
 

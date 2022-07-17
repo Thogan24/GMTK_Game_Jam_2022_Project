@@ -16,7 +16,12 @@ public class ButtonManager : MonoBehaviour
     public GameObject MiniGameMenu;
     public GameObject DiceGameMenu;
     public GameObject SlotMachineMenu;
+    public GameObject CosmeticsMenu;
+    public GameObject UpgradesMenu;
     public TextMeshProUGUI BusinessNameTextbox;
+    public TextMeshProUGUI WorkersTextbox;
+    public TextMeshProUGUI BetterCashTextbox;
+    public TextMeshProUGUI BetterWorkersTextbox;
 
 
     public GameObject WorkAtJobButton;
@@ -27,8 +32,8 @@ public class ButtonManager : MonoBehaviour
 
     public string businessName;
     public int overworkedRandom;
-    
 
+    public GameObject prefab;
     void Start()
     {
         gm = GameManager.GetComponent<GameManager>();
@@ -90,21 +95,23 @@ public class ButtonManager : MonoBehaviour
 
     public void StartBusiness()
     {
-        
-        
-        if (CurrentBusinessButton1Active == true)
-        {
-            CurrentBusinessButton2.SetActive(false);
-            StartBusinessButton.SetActive(false);
-        }
-        else
+
+
+        //if (CurrentBusinessButton1Active == true)
+        //{
+        //    CurrentBusinessButton2.SetActive(false);
+        //    StartBusinessButton.SetActive(false);
+        //}
+        if (gm.playerMoney >= 1000)
         {
             CurrentBusinessButton1.SetActive(true);
             CurrentBusinessButton1Active = true;
+            StartBusinessButton.SetActive(false);
+            gm.playerMoney -= 1000;
+
+            WorkMenu.SetActive(false);
+            BusinessMenu.SetActive(true);
         }
-        WorkMenu.SetActive(false);
-        BusinessMenu.SetActive(true);
-        
     }
     public void CurrentBusiness()
     {
@@ -132,7 +139,9 @@ public class ButtonManager : MonoBehaviour
 
     public void playerInput(string s)
     {
+        Debug.Log(s);
         businessName = s;
+        //Debug.Log(businessName);
         InputBox.SetActive(false);
         BusinessNameTextbox.text = s;
     }
@@ -146,6 +155,27 @@ public class ButtonManager : MonoBehaviour
     {
         gm.days += 1;
         gm.Overworked = false;
+    }
+
+    public void HireEmployee()
+    {
+        if (gm.playerMoney >= 100)
+        {
+            gm.playerMoney -= 100;
+            gm.AmountOfWorkers += 1;
+
+            WorkersTextbox.text = "Workers: " + gm.AmountOfWorkers.ToString();
+            //var position = new Vector2(-3 + gm.AmountOfWorkers, -4);
+            //GameObject clone = Instantiate(prefab, position, Quaternion.identity);
+
+        }
+    }
+
+    public void BackButton()
+    {
+        ShopMenu.SetActive(true);
+        CosmeticsMenu.SetActive(false);
+        UpgradesMenu.SetActive(false);
     }
 
 
