@@ -79,4 +79,9 @@ public class RandomCashMiniGame : MonoBehaviour
 
         
     }
+
+    public void destroythis()
+    {
+        
+    }
 }

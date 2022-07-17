@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
         
         OverworkedPNG.SetActive(Overworked);
+
+
         
     }
 
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         if (status == 0)
         {
-            return "Suicidal";
+            return "Dead";
         }
         else if (status == 1)
         {

@@ -39,6 +39,8 @@ public class ButtonManager : MonoBehaviour
         if (MainMenu.activeSelf)
         {
             WorkMenu.SetActive(false);
+            CasinoMenu.SetActive(false);
+            ShopMenu.SetActive(false);
         }
     }
 
@@ -133,6 +135,11 @@ public class ButtonManager : MonoBehaviour
         businessName = s;
         InputBox.SetActive(false);
         BusinessNameTextbox.text = s;
+    }
+
+    public void inputBet(int s)
+    {
+        
     }
 
     public void NextDayButton()
