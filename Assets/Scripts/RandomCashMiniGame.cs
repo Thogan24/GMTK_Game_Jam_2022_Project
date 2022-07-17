@@ -45,7 +45,7 @@ public class RandomCashMiniGame : MonoBehaviour
                 SpawnMoney();
             }
 
-            timerText.text = timerTime.ToString();
+            timerText.text = "Time Remaining: " + timerTime.ToString("F1");
 
         }
         else

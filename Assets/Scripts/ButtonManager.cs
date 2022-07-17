@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -18,10 +19,12 @@ public class ButtonManager : MonoBehaviour
     public GameObject SlotMachineMenu;
     public GameObject CosmeticsMenu;
     public GameObject UpgradesMenu;
+    public GameObject BetButton;
     public TextMeshProUGUI BusinessNameTextbox;
     public TextMeshProUGUI WorkersTextbox;
     public TextMeshProUGUI BetterCashTextbox;
     public TextMeshProUGUI BetterWorkersTextbox;
+
 
 
     public GameObject WorkAtJobButton;
@@ -32,10 +35,17 @@ public class ButtonManager : MonoBehaviour
 
     public string businessName;
     public int overworkedRandom;
+    public int bet;
+    public int diceSide;
 
     public GameObject prefab;
+    public TMP_InputField betInput;
+    public TMP_Dropdown diceInput;
+    
+
     void Start()
     {
+        betInput.characterValidation = TMP_InputField.CharacterValidation.Integer;
         gm = GameManager.GetComponent<GameManager>();
     }
 
@@ -80,7 +90,7 @@ public class ButtonManager : MonoBehaviour
             gm.AmountOfWork += 1;
             if (gm.Overworked == true)
             {
-                overworkedRandom = Random.Range(1, 5);
+                overworkedRandom = UnityEngine.Random.Range(1, 5);
                 if (overworkedRandom == 1)
                 {
                     gm.status -= 1;
@@ -144,11 +154,18 @@ public class ButtonManager : MonoBehaviour
         businessName = s;
         //Debug.Log(businessName);
         InputBox.SetActive(false);
-        BusinessNameTextbox.text = s;
+        
+
     }
 
-    public void inputBet(int s)
+    public void Bet()
     {
+        bet = Int32.Parse(betInput.text);
+        diceSide = diceInput.value;
+
+        betInput.gameObject.SetActive(false);
+        diceInput.gameObject.SetActive(false);
+        BetButton.SetActive(false);
 
     }
 

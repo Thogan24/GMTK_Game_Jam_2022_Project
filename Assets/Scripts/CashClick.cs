@@ -28,7 +28,7 @@ public class CashClick : MonoBehaviour
                 {
                     
                     MinigameScore += 5 + gm.BetterCashUpgrade;
-                    
+                    Destroy(hit.transform.parent.transform.gameObject);
                 }
             }
         }
