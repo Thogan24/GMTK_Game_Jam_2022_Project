@@ -4,6 +4,9 @@ using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
+    private GameManager gm;
+
+    public GameObject GameManager;
     public GameObject MainMenu;
     public GameObject WorkMenu;
     public GameObject CasinoMenu;
@@ -15,6 +18,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject SlotMachineMenu;
     public TextMeshProUGUI BusinessNameTextbox;
 
+
     public GameObject WorkAtJobButton;
     public GameObject StartBusinessButton;
     public GameObject CurrentBusinessButton1;
@@ -22,17 +26,25 @@ public class ButtonManager : MonoBehaviour
     public bool CurrentBusinessButton1Active = false;
 
     public string businessName;
+    
 
-    void Update()
+    void Start()
     {
-        
+        gm = GameManager.GetComponent<GameManager>();
     }
 
     public void WorkButton()
+    {       
+        MainMenu.SetActive(false);
+        WorkMenu.SetActive(true); 
+    }
+    public void ShopButton()
     {
         MainMenu.SetActive(false);
-        WorkMenu.SetActive(true);
+        ShopMenu.SetActive(true);
     }
+
+
 
     public void HomeButton()
     {
@@ -45,9 +57,18 @@ public class ButtonManager : MonoBehaviour
 
     public void WorkAtJob()
     {
-        MiniGameMenu.SetActive(true);
-        WorkMenu.SetActive(false);
+        if (gm.CannotWork == false)
+        {
+            MiniGameMenu.SetActive(true);
+            WorkMenu.SetActive(false);
+        }
+        else
+        {
+            //Display text
+        }
     }
+
+
     public void StartBusiness()
     {
         
@@ -95,7 +116,13 @@ public class ButtonManager : MonoBehaviour
         businessName = s;
         InputBox.SetActive(false);
         BusinessNameTextbox.text = businessName;
-
-
     }
+
+    public void NextDayButton()
+    {
+        gm.days += 1;
+        gm.Overworked = false;
+    }
+
+
 }

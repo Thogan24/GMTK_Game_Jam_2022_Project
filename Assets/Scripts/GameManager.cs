@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public int days = 0;
     public int status = 0;
     public string statusString = "";
+    public int AmountOfWork = 0;
+    public bool CannotWork = false;
+    public bool Overworked = false;
 
     void Start()
     {
@@ -28,8 +31,14 @@ public class GameManager : MonoBehaviour
         
         statusText.text = "Status: " + getStatusString(); ;
 
-        
+        if (AmountOfWork >= 6)
+        {
+            CannotWork = true;
+        }
     }
+
+    
+
 
     private string getStatusString()
     {
