@@ -3,7 +3,7 @@ using UnityEngine;
 public class CashClick : MonoBehaviour
 {
     public int MinigameScore = 0;
-    public RandomCashMiniGame mg;
+    private RandomCashMiniGame mg;
     public GameObject Panel;
     public GameObject GameManager;
     private GameManager gm;
@@ -27,7 +27,7 @@ public class CashClick : MonoBehaviour
                 if (hit.transform.tag == "Minigame_Cash")
                 {
                     
-                    MinigameScore += 5 + gm.playerMoney;
+                    MinigameScore += 5 + gm.BetterCashUpgrade;
                     
                 }
             }
